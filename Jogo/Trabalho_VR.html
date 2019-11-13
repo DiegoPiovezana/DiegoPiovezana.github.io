@@ -12,8 +12,16 @@
 
   <a-scene>
 
-    <a-sky color="#DDDDDD"></a-sky>
+    <a-scene>
+      <a-assets>
+        <img id="sky" src="sky.png">
+      </a-assets>
+      <a-sky src="#sky"></a-sky>
+    </a-scene>
 
+
+    <!--<a-sky color="#DDDDDD"></a-sky>-->
+    
     <a-cube color="#0095DD" position="0 1 0" rotation="0 0 0">
       <!-- 20 40 0 -->
       <a-animation attribute="rotation" from="20 0 0" to="20 360 0" direction="alternate" dur="4000" repeat="indefinite"

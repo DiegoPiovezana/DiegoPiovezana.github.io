@@ -1,29 +1,38 @@
 <html>
-    <head>
-        <title>TOMB OF THE MASK</title>
-        <meta name="description" content="A game by Alvego">
-        <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
-        <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
-        <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
-      </head>
+
+<head>
+  <title>TOMB OF THE MASK</title>
+  <meta name="description" content="A game by Alvego">
+  <!-- aframe itself -->
+  <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+  <!-- Ambiente -->
+  <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+  <!-- Fisica -->
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+</head>
+
 <body>
+  <a-scene environment="preset: tron" physics="debug: true">
 
-<a-scene environment="preset: tron" physics="debug: true">
+    <!-- Player -->
+    <a-entity camera="userHeight: 1.6" look-controls wasd-controls 
+    kinematic-body
+    position="0 1 0">
+      <a-entity cursor position="0 0 -0.5" geometry="primitive: circle; radius: 0.01; segments: 4;"
+        material="color: #FF4444; shader: flat"></a-entity>
+    </a-entity>
 
-<!-- Camera -->
-<a-entity camera look-controls></a-entity>
+    <a-grid static-body></a-grid>
+    <!-- Floor -->
+    <a-plane static-body></a-plane>
 
-<!-- Floor -->
-<a-plane static-body></a-plane>
+    <!-- Immovable box -->
+    <a-box static-body position="0 0.5 -5" width="3" height="1" depth="1"></a-box>
 
-<!-- Immovable box -->
-<a-box static-body position="0 0.5 -5" width="3" height="1" depth="1"></a-box>
+    <!-- Dynamic box -->
+    <a-box dynamic-body position="5 0.5 0" width="1" height="1" depth="1"></a-box>
 
-<!-- Dynamic box -->
-<a-box dynamic-body position="5 0.5 0" width="1" height="1" depth="1"></a-box>
-
-</a-scene>
-
+  </a-scene>
 </body>
 
 </html>

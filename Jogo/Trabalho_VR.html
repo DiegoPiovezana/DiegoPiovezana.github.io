@@ -14,6 +14,13 @@
 <body>
   <a-scene environment="preset: tron" physics="debug: true">
 
+    <assets>
+    <a-assets-item id="object" src=""></assets-item>
+    <a-assets-item id="materia" src=""></assets-item>
+    </assets>
+
+    <a-obj-model src="#object" mtl="#material"></a-obj-model>
+
     <!-- Player -->
     <a-entity camera="userHeight: 1.6" look-controls wasd-controls 
     kinematic-body
@@ -26,11 +33,15 @@
     <!-- Floor -->
     <a-plane static-body></a-plane>
 
+    <a-obj-model src="object" ></a-obj-model>
+
     <!-- Immovable box -->
     <a-box static-body position="0 0.5 -5" width="3" height="1" depth="1"></a-box>
 
 	  <a-box src="https://i.imgur.com/mYmmbrp.jpg" position="0 2 -5" rotation="0 45 45"
     scale="2 2 2"></a-box>
+
+
 
 	
 	

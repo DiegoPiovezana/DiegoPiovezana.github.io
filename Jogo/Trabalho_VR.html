@@ -15,11 +15,12 @@
   <a-scene environment="preset: tron" physics="debug: true">
 
     <assets>
-    <a-assets-item id="object" src=""></assets-item>
-    <a-assets-item id="materia" src=""></assets-item>
+    <a-assets-item id="object" src="https://github.com/DiegoPiovezana/DiegoPiovezana.github.io/blob/master/Jogo/Wall_Stone_002_v1_JPG.obj"></assets-item>
+    <a-assets-item id="materia" src="https://github.com/DiegoPiovezana/DiegoPiovezana.github.io/blob/master/Jogo/Wall_Stone_002_v1_JPG.mtl"></assets-item>
     </assets>
 
     <a-obj-model src="#object" mtl="#material"></a-obj-model>
+    <a-entity gltf-model="#tree" scale="0.01 0.01 0.01"></a-entity>
 
     <!-- Player -->
     <a-entity camera="userHeight: 1.6" look-controls wasd-controls 

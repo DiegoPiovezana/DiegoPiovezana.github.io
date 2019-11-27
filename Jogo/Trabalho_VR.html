@@ -10,7 +10,7 @@
   <!-- Fisica -->
   <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
 
-<!--  Importações do Brier
+  <!--  Importações do Brier
 
 <script
 		src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
@@ -18,9 +18,9 @@
 
 -->
 
-<!-- Mascara -->
-<a-box src="https://images-na.ssl-images-amazon.com/images/I/21ZzpgClpiL.png" height="0.6" width="0.6" depth="0.1" bird
-id="bird" position="-7 2 -6" rotation="-1 0 0" static-body physics-collider="ignoreSleep: true"></a-box>
+  <!-- Mascara -->
+  <a-box src="https://images-na.ssl-images-amazon.com/images/I/21ZzpgClpiL.png" height="0.6" width="0.6" depth="0.1"
+    bird id="bird" position="-7 2 -6" rotation="-1 0 0" static-body physics-collider="ignoreSleep: true"></a-box>
 
   <!-- <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
    -->
@@ -36,10 +36,10 @@ id="bird" position="-7 2 -6" rotation="-1 0 0" static-body physics-collider="ign
 
 <body>
 
-    <audio autoplay="autoplay" controls="controls">
-        <source src="Indiana Jones Theme Song [HD].mp3" type="audio/mpeg" />
-        Silas o cara do som
-    </audio>
+  <audio autoplay="autoplay" controls="controls">
+    <source src="Indiana Jones Theme Song [HD].mp3" type="audio/mp3" />
+    Silas o cara do som
+  </audio>
 
 
   <a-scene environment="preset: tron" physics="debug: true">
@@ -80,6 +80,9 @@ id="bird" position="-7 2 -6" rotation="-1 0 0" static-body physics-collider="ign
     <a-entity camera="userHeight: 1.6" sleepy=allowSleep:false look-controls wasd-controls="acceleration: 200"
       kinematic-body position="0 1 0">
 
+<!-- Personagem -->
+
+
       <!-- Círculo vermelho no centro da câmera -->
       <!--  <a-entity cursor position="0 0 -0.5" geometry="primitive: circle; radius: 0.01; segments: 4;"
         material="color: #FF4444; shader: flat"></a-entity> -->
@@ -108,8 +111,8 @@ id="bird" position="-7 2 -6" rotation="-1 0 0" static-body physics-collider="ign
 
     <!-- ######### Labirinto ########## -->
 
-	
-	<!-- Diego abaixei o labirinto em 2 centimetros pra parar o bug do chão -->
+
+    <!-- Diego abaixei o labirinto em 2 centimetros pra parar o bug do chão -->
     <a-entity static-body physics-collider="ignoreSleep: false" sleepy=allowSleep:true id="maze1"
       maze='size: 10 10; wall: #wall-one; cap: #end-cap; open: S 0 N 1 2 4 E 5;' position='0 0 0' rotation='0 0 0'>
     </a-entity>

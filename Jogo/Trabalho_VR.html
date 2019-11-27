@@ -36,12 +36,6 @@
 
 <body>
 
-  <audio autoplay="autoplay" controls="controls">
-    <source src="Indiana Jones Theme Song [HD].mp3" type="audio/mp3" />
-    Silas o cara do som
-  </audio>
-
-
   <a-scene environment="preset: tron" physics="debug: true">
 
     <assets>
@@ -52,6 +46,7 @@
           src="https://github.com/DiegoPiovezana/DiegoPiovezana.github.io/blob/master/Jogo/Wall_Stone_002_v1_JPG.mtl">
           </assets-item>
 
+          <audio id="river" src="Indiana Jones Theme Song [HD].mp3" preload="auto"></audio>
 
           <!-- # Texturas Labirinto # -->
           <img id="texture-wall" src="img/Wall-maze.png">
@@ -63,7 +58,7 @@
           <!-- ### -->
 
     </assets>
-
+ <a-entity sound="src: #river"></a-entity>
     <a-obj-model src="#object" mtl="#material"></a-obj-model>
     <!--   <a-entity gltf-model="#tree" scale="0.01 0.01 0.01"></a-entity> -->
 
@@ -80,7 +75,7 @@
     <a-entity camera="userHeight: 1.6" sleepy=allowSleep:false look-controls wasd-controls="acceleration: 200"
       kinematic-body position="0 1 0">
 
-<!-- Personagem -->
+      <!-- Personagem -->
 
 
       <!-- Círculo vermelho no centro da câmera -->

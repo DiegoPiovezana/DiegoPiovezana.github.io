@@ -11,8 +11,9 @@
   <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
 
   <!--  Importações do Brier -->
-<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
-<!--<script
+  <script
+    src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
+  <!--<script
 		src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
 	<script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 -->
@@ -64,7 +65,7 @@
     <!--   static-body-->
     <!-- Player -->
     <a-entity camera="userHeight: 1.6" sleepy=allowSleep:false look-controls wasd-controls="acceleration: 200"
-      kinematic-body position="0 1 0">
+      kinematic-body position="0 1 30">
 
       <!-- Personagem -->
 
@@ -74,12 +75,13 @@
         material="color: #FF4444; shader: flat"></a-entity> -->
 
     </a-entity>
-    <a-entity position="0 5 0" animation="property: position; to: 0 0 0; loop: true; dur: 600">
-    <a-box static-body physics-collider="ignoreSleep: true" position=" 0 5 0" rotation="0 0 90" radius="50" height="50" depth="50" color="black"physics-collider="ignoreSleep: true" ></a-box>
-  </a-entity>
+    <a-entity position="0 5 0" animation="property: position; to: 0 -5 0; loop: true; dur: 10000">
+      <a-box static-body physics-collider="ignoreSleep: true" position=" 0 5 0" rotation="0 0 90" radius="50"
+        height="50" depth="50" color="black" physics-collider="ignoreSleep: true"></a-box>
+    </a-entity>
 
 
-    <!--<a-grid static-body></a-grid> -->
+    <a-grid static-body></a-grid>
 
     <!-- Floor -->
     <a-plane static-body></a-plane>
@@ -107,7 +109,10 @@
       maze='size: 10 10; wall: #wall-one; cap: #end-cap; open: S 0 N 1 2 4 E 5;' position='0 0 0' rotation='0 0 0'>
     </a-entity>
 
-
+    <a-box wasd-controls
+      src="https://http2.mlstatic.com/mascara-aku-aku-crash-bandicoot-enfeite-decoraco-D_NQ_NP_657811-MLB27056514044_032018-F.webp"
+      height="25" width="25" depth="0.5" bird id="MASK" position="0 12.5 35" rotation="-1 0 0" static-body
+      physics-collider="ignoreSleep: true"></a-box>
   </a-scene>
 </body>
 

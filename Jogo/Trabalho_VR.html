@@ -11,9 +11,9 @@
   <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
 
   <!--  Importações do Brier -->
-  <script
+  <!-- <script
     src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
-  <!--<script
+   --><!--<script
 		src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
 	<script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 -->
@@ -56,6 +56,7 @@
           > </assets-item>
 
     </assets>
+    
     <a-obj-model src="#object" mtl="#material"></a-obj-model>
     <!--   <a-entity gltf-model="#tree" scale="0.01 0.01 0.01"></a-entity> -->
 
@@ -70,7 +71,7 @@
     <!--   static-body-->
     <!-- Player -->
     <a-entity camera="userHeight: 1.6" sleepy=allowSleep:false look-controls wasd-controls="acceleration: 200"
-      kinematic-body position="0 1 30"></a-entity>
+      kinematic-body position="0 1 00"></a-entity>
 
      
 
@@ -79,9 +80,9 @@
         material="color: #FF4444; shader: flat"></a-entity> -->
 
     
-    <a-entity position="0 5 0" animation="property: position; to: 0 -5 0; loop: true; dur: 10000">
+    <a-entity position="0 50 0" animation="property: position; to: 0 -5 0; loop: true; dur: 50000">
       <a-box static-body physics-collider="ignoreSleep: true" position=" 0 5 0" rotation="0 0 90" radius="50"
-        height="50" depth="50" color="black" physics-collider="ignoreSleep: true"></a-box>
+        height="60" depth="60" color="black" physics-collider="ignoreSleep: true"></a-box>
     </a-entity>
 
 
@@ -106,11 +107,8 @@
  -->
 
     <!-- ######### Labirinto ########## -->
-
-
-    <!-- Diego abaixei o labirinto em 2 centimetros pra parar o bug do chão -->
     <a-entity static-body physics-collider="ignoreSleep: false" sleepy=allowSleep:true id="maze1"
-      maze='size: 10 10; wall: #wall-one; cap: #end-cap; open: S 0 N 1 2 4 E 5;' position='0 0 0' rotation='0 0 0'>
+      maze='size: 15 15; wall: #wall-one; cap: #end-cap; open: S 0 N 1 2 4 E 5;' position='0 0 0' rotation='0 0 0'>
     </a-entity>
 
     <a-box wasd-controls

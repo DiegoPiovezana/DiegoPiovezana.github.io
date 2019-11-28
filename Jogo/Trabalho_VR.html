@@ -34,6 +34,10 @@
 
     <a-sound src="src: intro.mp3" autoplay="true" position="0 2 5"></a-sound>
     <assets>
+
+      <a-asset-item id="fox" response-type="arraybuffer" 
+      src="https://github.com/DiegoPiovezana/DiegoPiovezana.github.io/blob/master/Jogo/scene.glb"
+      > </assets-item>
       <a-assets-item id="object"
         src="https://github.com/DiegoPiovezana/DiegoPiovezana.github.io/blob/master/Jogo/Wall_Stone_002_v1_JPG.obj">
         </assets-item>
@@ -68,7 +72,7 @@
       kinematic-body position="0 1 30">
 
       <!-- Personagem -->
-
+<a-entity gltf-model="#fox" scale="0.1 0.1 0.1">
 
       <!-- Círculo vermelho no centro da câmera -->
       <!--  <a-entity cursor position="0 0 -0.5" geometry="primitive: circle; radius: 0.01; segments: 4;"

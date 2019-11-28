@@ -33,11 +33,8 @@
   <a-scene environment="preset: tron" physics="debug: true">
 
     <a-sound src="src: intro.mp3" autoplay="true" position="0 2 5"></a-sound>
-    <assets>
 
-      <a-asset-item id="fox" response-type="arraybuffer" 
-      src="https://github.com/DiegoPiovezana/DiegoPiovezana.github.io/blob/master/Jogo/scene.glb"
-      > </assets-item>
+    <assets>
       <a-assets-item id="object"
         src="https://github.com/DiegoPiovezana/DiegoPiovezana.github.io/blob/master/Jogo/Wall_Stone_002_v1_JPG.obj">
         </assets-item>
@@ -54,6 +51,10 @@
           </a-cylinder>
           <!-- ### -->
 
+          <a-asset-item id="fox" response-type="arraybuffer" 
+          src="https://github.com/DiegoPiovezana/DiegoPiovezana.github.io/blob/master/Jogo/scene.glb"
+          > </assets-item>
+
     </assets>
     <a-obj-model src="#object" mtl="#material"></a-obj-model>
     <!--   <a-entity gltf-model="#tree" scale="0.01 0.01 0.01"></a-entity> -->
@@ -69,16 +70,16 @@
     <!--   static-body-->
     <!-- Player -->
     <a-entity camera="userHeight: 1.6" sleepy=allowSleep:false look-controls wasd-controls="acceleration: 200"
-      kinematic-body position="0 1 30">
+      kinematic-body position="0 1 30"></a-entity>
 
       <!-- Personagem -->
-<a-entity gltf-model="#fox" scale="10 10 10" position=" 0 5 30" >
+<a-entity gltf-model="#fox" scale="10 10 10" position=" 0 5 30" ></a-entity>
 
       <!-- Círculo vermelho no centro da câmera -->
       <!--  <a-entity cursor position="0 0 -0.5" geometry="primitive: circle; radius: 0.01; segments: 4;"
         material="color: #FF4444; shader: flat"></a-entity> -->
 
-    </a-entity>
+    
     <a-entity position="0 5 0" animation="property: position; to: 0 -5 0; loop: true; dur: 10000">
       <a-box static-body physics-collider="ignoreSleep: true" position=" 0 5 0" rotation="0 0 90" radius="50"
         height="50" depth="50" color="black" physics-collider="ignoreSleep: true"></a-box>

@@ -36,8 +36,9 @@
 
 <body>
 
-  <a-scene environment="preset: tron" physics="debug: true">
 
+  <a-scene environment="preset: tron" physics="debug: true">
+    <a-sound src="src: intro.mp3" autoplay="true" position="0 2 5"></a-sound>
     <assets>
       <a-assets-item id="object"
         src="https://github.com/DiegoPiovezana/DiegoPiovezana.github.io/blob/master/Jogo/Wall_Stone_002_v1_JPG.obj">
@@ -45,10 +46,6 @@
         <a-assets-item id="materia"
           src="https://github.com/DiegoPiovezana/DiegoPiovezana.github.io/blob/master/Jogo/Wall_Stone_002_v1_JPG.mtl">
           </assets-item>
-
-          <audio id="intro" src="Indiana Jones Theme Song [HD].mp3" preload="auto" 
-          autoplay="autoplay" controls="controls"
-          ></audio>
 
           <!-- # Texturas Labirinto # -->
           <img id="texture-wall" src="img/Wall-maze.png">
@@ -60,7 +57,6 @@
           <!-- ### -->
 
     </assets>
- <a-entity sound="#intro"></a-entity>
     <a-obj-model src="#object" mtl="#material"></a-obj-model>
     <!--   <a-entity gltf-model="#tree" scale="0.01 0.01 0.01"></a-entity> -->
 
@@ -85,6 +81,10 @@
         material="color: #FF4444; shader: flat"></a-entity> -->
 
     </a-entity>
+    <a-entity position="0 5 0" animation="property: position; to: 0 0 0; loop: true; dur: 100">
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 0 5 0" rotation="0 0 90" radius="50" height="50" depth="50" color="black"physics-collider="ignoreSleep: true" ></a-box>
+  </a-entity>
+
 
     <!--<a-grid static-body></a-grid> -->
 

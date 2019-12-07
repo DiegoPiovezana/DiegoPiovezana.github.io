@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vrstats</title>
+    <meta name="description" content="vrstats">
+    <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.2.0/dist/aframe-extras.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.2.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js"></script> 
+    <script src="https://rawgit.com/chenzlabs/stats-in-vr/master/dist/aframe-stats-in-vr-component.min.js"></script>
+  </head>
+  <body>
+    <!-- see: https://github.com/donmccurdy/aframe-physics-system -->
+  	<!-- to see wireframes, set physics='debug: true' -->
+    <a-scene stats-in-vr physics="debug: false">
+      <a-sky id="sky" color="#0000ff"></a-sky>
+      <a-box id="center" 
+          position="0 0 0"
+          color="red" 
+          depth="0.5" width="0.5" height="10"></a-box>
+      <a-entity id="player"
+          camera
+          universal-controls
+          kinematic-body
+          rotation="-45 -45 0"
+          position="-20 20.8 20">
+      </a-entity>
+      <!-- birds-eye view box to stand on -->
+      <a-box static-body 
+          depth="0.25" height="0.5" width="0.5" 
+          position="-20 19.8 20"
+          color="tomato"></a-box>
+      <a-grid id="ground" width="200" height="200" static-body></a-grid>
+    </a-scene>
+  </body>
+</html>

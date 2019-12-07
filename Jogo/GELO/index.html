@@ -241,6 +241,7 @@
     AFRAME.registerComponent('jogador', {
       tick: function () {
         const position = this.el.getAttribute('position');
+        console.log(position);
 
         if (position.x > 30) {
       

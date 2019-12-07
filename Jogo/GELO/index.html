@@ -150,7 +150,7 @@
       rotation='0 0 0'>
     </a-entity>
 
-    <!-- Compara a saida do personagem --Saidas (linhas ao redor do labirinto) -->
+    <!-- Compara a saida do personagem --Saidas (linhas ao redor do labirinto) 
     <a-box static-body physics-collider="ignoreSleep: true" position=" 0 0 -40" rotation="0 0 90" radius="30"
       height="60" depth="1" color="red" physics-collider="ignoreSleep: true"></a-box>
     <a-box static-body physics-collider="ignoreSleep: true" position=" -40 0 0" rotation="0 0 90" radius="1" height="1"
@@ -158,7 +158,10 @@
     <a-box static-body physics-collider="ignoreSleep: true" position=" 40 0 0" rotation="0 0 90" radius="1" height="1"
       depth="60" color="red" physics-collider="ignoreSleep: true"></a-box>
     <a-box static-body physics-collider="ignoreSleep: true" position=" 0 0 40" rotation="0 0 90" radius="30" height="60"
-      depth="1" color="red" physics-collider="ignoreSleep: true"></a-box>
+      depth="1" color="red" physics-collider="ignoreSleep: true"></a-box> 
+    
+    Depreciado    
+    -->
 
 
     <!-- Chão -->
@@ -236,46 +239,52 @@
       }
     }); -->
     <script>
-     // document.addEventListener('wasd-controls');
-      document.addEventListener	('wasd-controls', function (evt) {
+      // document.addEventListener('wasd-controls');
+      document.addEventListener('wasd-controls', function (evt) {
         console.log(document.getElementById('jogador').getAttribute('position'));
-        });
+      });
 
+      //PEGANDO O COMPONENTE JOGADOR PARA REALIZAR OPERAÇÕES COM O MESMO
       AFRAME.registerComponent('jogador', {
         tick: function () {
-          const position = this.el.getAttribute('position');
-          console.log(position);
+          //PRINTA MENSAGENS SOBRE A POSIÇÃO DO JOGADOR NO EIXO X
+          console.log(this.el.getAttribute('position').x);
 
-          if (position.x > 30) {
+
+          //COMPARAR SE A PESSOA JA ESTA FORA DO LABIRINTO PELA DIREITA
+          if (this.el.getAttribute('position').x > 30) {
+
+            //MOSTRAR PLACAR AQUI
+
+          }
+          //COMPARAR SE A PESSOA JA ESTA FORA DO LABIRINTO PELA ESQUERDA
+          if (this.el.getAttribute('position').x < -30) {
+
+            //MOSTRAR PLACAR AQUI
+
+          }
+          //COMPARAR SE A PESSOA JA ESTA FORA DO LABIRINTO PELO  NORTE
+          if (this.el.getAttribute('position').z > 30) {
+
+            //MOSTRAR PLACAR AQUI
+
+          }
+          //COMPARAR SE A PESSOA JA ESTA FORA DO LABIRINTO PELO SUL
+          if (this.el.getAttribute('position').z > -30) {
+
+
+            //EXEMPLO DE COMO SERIA UMA CHAMADA DO TEXTO DA PONTUAÇÃO
+
             //document.getElementById('texto').setAttribute('visible', true);
-            //document.getElementById('texto').setAttribute('position', { x: 40, y: position.y + 5, z: position.z + 0 });
-            await sleep(2000);
-            location.reload();
-          } if (position.x < -30) {
-
-            document.getElementById('texto').setAttribute('visible', true);
-            document.getElementById('texto').setAttribute('position', { x: -40, y: position.y + 5, z: position.z + 0 });
-            await sleep(2000);
-            location.reload();
-          } if (position.z > 30) {
-
-            document.getElementById('texto').setAttribute('visible', true);
-            document.getElementById('texto').setAttribute('position', { x: 0, y: position.y + 5, z: position.z + 40 });
-            await sleep(2000);
-            location.reload();
-          } if (position.z > -30) {
-
-            document.getElementById('texto').setAttribute('visible', true);
-            document.getElementById('texto').setAttribute('position', { x: 0, y: position.y + 5, z: position.z + -40 });
-            await sleep(2000);
-            location.reload();
+            //document.getElementById('texto').setAttribute('position', { x: 0, y: position.y + 5, z: position.z + -40 });
+            //await sleep(2000);
+            //location.reload();
           }
         },
       });
+
     </script>
   </a-scene>
-
-
 </body>
 
 </html>

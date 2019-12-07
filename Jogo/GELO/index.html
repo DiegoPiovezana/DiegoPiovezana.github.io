@@ -61,7 +61,7 @@
     <!-- Norte -->
 
     <a-sound src="congelar.mp3" autoplay="true" position="0 0 0"></a-sound>
-    <a-sound src="intro.mp3" autoplay="true" position="-30 0 0"></a-sound> <!-- Única saída Sul -->
+    <a-sound src="intro.mp3" autoplay="true" position="-30 0 0" loop="true"></a-sound> <!-- Única saída Sul -->
 
     <!-- TIMER - Não funciona-->
     <!-- <div class="circle-timer"></div> -->
@@ -99,7 +99,7 @@
 
 
     <!-- Câmera (com apenas muro concreto)-->
-    <a-entity id="jogador" camera="userHeight: 1.8" universal-controls kinematic-body position="-24 0 0">
+    <a-entity id="jogador" camera="userHeight: 1.8" universal-controls kinematic-body position="24 0 0">
     </a-entity>
 
 
@@ -146,25 +146,25 @@
       </a-box> -->
 
     <!-- Labirinto  -->
-    <a-entity id="maze" maze='size: 15 15; wall: #wall-one; cap: #end-cap; open: S 0;' position='0 0 0'
+    <a-entity id="maze" maze='size: 15 15; wall: #wall-one; cap: #end-cap; open: S 0;' position='0 0.1 0'
       rotation='0 0 0'>
     </a-entity>
 
-    <!-- Compara a saida do personagem --Saidas -->
-    <!-- <a-box static-body physics-collider="ignoreSleep: true" position=" 0 0 -30" rotation="0 0 90" radius="30"
+    <!-- Compara a saida do personagem --Saidas (linhas ao redor do labirinto) -->
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 0 0 -40" rotation="0 0 90" radius="30"
       height="60" depth="1" color="red" physics-collider="ignoreSleep: true"></a-box>
-    <a-box static-body physics-collider="ignoreSleep: true" position=" -30 0 0" rotation="0 0 90" radius="1" height="1"
+    <a-box static-body physics-collider="ignoreSleep: true" position=" -40 0 0" rotation="0 0 90" radius="1" height="1"
       depth="60" color="red" physics-collider="ignoreSleep: true"></a-box>
-    <a-box static-body physics-collider="ignoreSleep: true" position=" 30 0 0" rotation="0 0 90" radius="1" height="1"
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 40 0 0" rotation="0 0 90" radius="1" height="1"
       depth="60" color="red" physics-collider="ignoreSleep: true"></a-box>
-    <a-box static-body physics-collider="ignoreSleep: true" position=" 0 0 30" rotation="0 0 90" radius="30" height="60"
-      depth="1" color="red" physics-collider="ignoreSleep: true"></a-box> -->
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 0 0 40" rotation="0 0 90" radius="30" height="60"
+      depth="1" color="red" physics-collider="ignoreSleep: true"></a-box>
 
 
     <!-- Chão -->
     <a-box id="solo" position='0 0 0' static-body physics-collider="ignoreSleep: true" width="400" height="1"
       depth="400" static-body material="src: #texture-floor; opacity: 0.8; transparent: true">
-      <a-animation attribute="scale" dur="99999" from="1 1 1" to="0 0 0" direction="alternate-reverse"
+      <a-animation attribute="scale" dur="999999" from="1 0.5 1" to="0 0 0" direction="alternate-reverse"
         easing="ease-out-circ"></a-animation>
     </a-box>
 
@@ -179,11 +179,11 @@
     <!-- Água/Lava -->
     <a-box id="fluido" width="300" height="2" depth="300" static-body
       material="src: #texture-fluido; opacity: 0.9; transparent: true">
-      <a-animation attribute="position" dur="99999" from="0 -1 0" d to="0 0.1 0" repeat="indefinite">
+      <a-animation attribute="position" dur="9999999" from="0 -1 0" d to="0 0.1 0" repeat="indefinite">
     </a-box>
 
-    <!-- <a-text id="texto" value="VITORIA" position="0 0 0" color="black" width="15" radius="15" height="15" visible ="false"></a-text>
- -->
+    <a-text id="texto" value="VITORIA" position="0 0 0" color="black" width="15" radius="15" height="15" visible ="false"></a-text>
+
     <!-- Placa superior -->
     <!-- <a-box id="placa-superior" 
       width="60" height="1" depth="60"     
@@ -243,7 +243,7 @@
         const position = this.el.getAttribute('position');
 
         if (position.x > 30) {
-
+      
           document.getElementById('texto').setAttribute('visible', true);
           document.getElementById('texto').setAttribute('position', {x: 40, y: position.y + 5, z: position.z + 0});
           await sleep(2000);

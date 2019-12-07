@@ -49,7 +49,12 @@
     <a-scene environment="preset: volcano" physics="debug: false">
 
       <!-- SOM -->
-      <a-sound src="intro.mp3" autoplay="true" position="0 0 0"></a-sound>
+      <!-- <a-sound src="intro.mp3" autoplay="true" position="0 0 0"></a-sound> -->
+
+      <!-- Som nas saídas do labirinto -->
+      <a-sound src="intro.mp3" autoplay="true" position="30 0 0"></a-sound> <!-- Leste -->
+      <!-- <a-sound src="intro.mp3" autoplay="true" position="-14 0 0"></a-sound> --> <!-- Norte -->
+      <a-sound src="intro.mp3" autoplay="true" position="-24 0 0"></a-sound> <!-- Sul -->
 
       <!-- TIMER - Não funciona-->
       <!-- <div class="circle-timer"></div> -->
@@ -96,8 +101,7 @@
           camera="userHeight: 1.8"
           universal-controls
           kinematic-body
-          position="0 1 0">
-          
+          position="0 7 0">          
       </a-entity>
 
       <!-- Câmera (Objetos ficam abstratos = jogador cai) -->
@@ -171,9 +175,9 @@
       static-body material="src: #texture-fluido; opacity: 0.9; transparent: true">
       <a-animation 
         attribute="position"
-        dur="999999"
-        from="0 -1 0"
-        to="0 5 0"
+        dur="9999999"
+        from="0 -1 0"d
+        to="0 10 0"
         repeat="indefinite">
     </a-box> 
 

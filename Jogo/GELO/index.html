@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
 
-    <meta charset="utf-8">
-    <title>TOMB OF THE MASK</title>
-    <meta name="description" content="Um jogo inspirado no jogo Tomb of the Mask">
-    
-    <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+<head>
 
-    <!-- Ambiente -->
-    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+  <meta charset="utf-8">
+  <title>TOMB OF THE MASK</title>
+  <meta name="description" content="Um jogo inspirado no jogo Tomb of the Mask">
 
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.2.0/dist/aframe-extras.min.js"></script>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.2.0/dist/aframe-physics-system.min.js"></script>
-    <script src="https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js"></script> 
-    <script src="https://unpkg.com/aframe-maze-component@0.1.20/dist/aframe-maze-component.min.js"></script>
+  <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
 
-    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+  <!-- Ambiente -->
+  <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
 
-  </head>
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.2.0/dist/aframe-extras.min.js"></script>
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.2.0/dist/aframe-physics-system.min.js"></script>
+  <script
+    src="https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-maze-component@0.1.20/dist/aframe-maze-component.min.js"></script>
 
-  <!-- Ícone na guia do navegador -->
-  <link rel="shortcut icon" href="icons/16x16.png">
+  <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 
-  <body>
-    
-    <!-- 
+</head>
+
+<!-- Ícone na guia do navegador -->
+<link rel="shortcut icon" href="icons/16x16.png">
+
+<body>
+
+  <!-- 
       CENÁRIOS:
 
       default
@@ -47,51 +49,48 @@
       threetowers #### Gelo
      -->
 
-    <a-scene environment="preset: threetowers" physics="debug: false">
+  <a-scene environment="preset: threetowers" physics="debug: false">
 
-      <!-- SOM -->
-      <!-- <a-sound src="intro.mp3" autoplay="true" position="0 0 0"></a-sound> -->
+    <!-- SOM -->
+    <!-- <a-sound src="intro.mp3" autoplay="true" position="0 0 0"></a-sound> -->
 
-      <!-- Som nas saídas do labirinto -->
-      <!-- <a-sound src="intro.mp3" autoplay="true" position="30 0 0"></a-sound> --> <!-- Leste -->
-      <!-- <a-sound src="intro.mp3" autoplay="true" position="-14 0 0"></a-sound> --> <!-- Norte -->
-     
-      <a-sound src="congelar.mp3" autoplay="true" position="0 0 0"></a-sound>
-      <a-sound src="intro.mp3" autoplay="true" position="0 0 0"></a-sound> <!-- Sul -->      
+    <!-- Som nas saídas do labirinto -->
+    <!-- <a-sound src="intro.mp3" autoplay="true" position="30 0 0"></a-sound> -->
+    <!-- Leste -->
+    <!-- <a-sound src="intro.mp3" autoplay="true" position="-14 0 0"></a-sound> -->
+    <!-- Norte -->
 
-      <!-- TIMER - Não funciona-->
-      <!-- <div class="circle-timer"></div> -->
+    <a-sound src="congelar.mp3" autoplay="true" position="0 0 0"></a-sound>
+    <a-sound src="intro.mp3" autoplay="true" position="0 0 0"></a-sound> <!-- Sul -->
+
+    <!-- TIMER - Não funciona-->
+    <!-- <div class="circle-timer"></div> -->
 
 
-      <a-assets>
-       
-        <!-- Texturas labirinto -->
-        <img id="texture-wall" src="img/Wall-maze.png">
-        <img id="texture-floor" src="img/gelo.png">
-    
-        <img id="texture-subsolo" src="img/lava1.png">
-        <img id="texture-fluido" src="img/agua.png">
+    <a-assets>
 
-          <!-- Muros -->
-          <a-box id="wall-one" 
-          static-body material="src: #texture-wall" 
-          depth="1" width="4" height="5">
-          </a-box>
-        
-          <!-- Colunas -->
-          <a-cylinder id="end-cap"
-            static-body color="#444444" 
-            depth="1.1" width="1.1" height="6"
-            radius="0.5">
-          </a-cylinder>
-          
-      </a-assets>
+      <!-- Texturas labirinto -->
+      <img id="texture-wall" src="img/Wall-maze.png">
+      <img id="texture-floor" src="img/gelo.png">
 
-      <!-- Céu -->
-      <!-- <a-sky id="sky" color="#0000ff"></a-sky> -->
-     
-      <!-- Caixa vermelha no centro - ignora colisão (teste) -->
-      <!--   <a-box id="center" 
+      <img id="texture-subsolo" src="img/lava1.png">
+      <img id="texture-fluido" src="img/agua.png">
+
+      <!-- Muros -->
+      <a-box id="wall-one" static-body material="src: #texture-wall" depth="1" width="4" height="5">
+      </a-box>
+
+      <!-- Colunas -->
+      <a-cylinder id="end-cap" static-body color="#444444" depth="1.1" width="1.1" height="6" radius="0.5">
+      </a-cylinder>
+
+    </a-assets>
+
+    <!-- Céu -->
+    <!-- <a-sky id="sky" color="#0000ff"></a-sky> -->
+
+    <!-- Caixa vermelha no centro - ignora colisão (teste) -->
+    <!--   <a-box id="center" 
           position="0 0 0"
           color="red" 
           depth="0.5" width="0.5" height="10">
@@ -100,16 +99,13 @@
 
 
 
-      <!-- Câmera (com apenas muro concreto)-->
-      <a-entity id="jogador"
-          camera="userHeight: 1.8"
-          universal-controls
-          kinematic-body
-          position="-24 0 0">          
-      </a-entity>
+    <!-- Câmera (com apenas muro concreto)-->
+    <a-entity id="jogador" camera="userHeight: 1.8" universal-controls kinematic-body position="-24 0 0">
+    </a-entity>
 
-      <!-- Câmera (Objetos ficam abstratos = jogador cai) -->
-      <!-- <a-entity id="jogador"
+
+    <!-- Câmera (Objetos ficam abstratos = jogador cai) -->
+    <!-- <a-entity id="jogador"
           camera="userHeight: 1.8"
           universal-controls
           kinematic-body
@@ -117,8 +113,8 @@
           physics-collider="ignoreSleep: true">
       </a-entity> -->
 
-      <!-- Câmera (câmera flutua)-->
-      <!-- <a-box src="https://images-na.ssl-images-amazon.com/images/I/21ZzpgClpiL.png" 
+    <!-- Câmera (câmera flutua)-->
+    <!-- <a-box src="https://images-na.ssl-images-amazon.com/images/I/21ZzpgClpiL.png" 
       height="0.6" width="0.6" depth="0.1" 
       bird id="bird" position="-20 10.8 20" rotation="-1 0 0" 
       static-body physics-collider="ignoreSleep: true">
@@ -131,8 +127,8 @@
       </a-box> -->
 
 
-      <!-- Câmera MP -->
-      <!-- <a-entity 
+    <!-- Câmera MP -->
+    <!-- <a-entity 
       camera look-controls wasd-controls 
       acceleration="500" 
       position="0 2 1" static-body
@@ -141,36 +137,37 @@
       avatar>
       </a-entity> -->
 
-     
-      <!-- Caixa de vista panorâmica para se apoiar / Caixa "trampolim" -->
-      <!-- <a-box static-body physics-collider="ignoreSleep: true" id= "trampolim"
+
+    <!-- Caixa de vista panorâmica para se apoiar / Caixa "trampolim" -->
+    <!-- <a-box static-body physics-collider="ignoreSleep: true" id= "trampolim"
           static-body 
           depth="0.25" height="0.5" width="0.5" 
           position="0 10 0"
           color="red">          
       </a-box> -->
 
-      <!-- Labirinto  -->
-      <a-entity id="maze" 
-          maze='size: 15 15; wall: #wall-one; cap: #end-cap; open: S 0 N 1 4 E 5;' 
-          position='0 1.5 0'
-          rotation='0 0 0'>          
-      </a-entity>
-      
+    <!-- Labirinto  -->
+    <a-entity id="maze" maze='size: 15 15; wall: #wall-one; cap: #end-cap; open: S 0 N 1 4 E 5;' position='0 1.5 0'
+      rotation='0 0 0'>
+    </a-entity>
+
+    <!-- Compara a saida do personagem --Saidas -->
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 0 0 -30" rotation="0 0 90" radius="30"
+      height="60" depth="1" color="red" physics-collider="ignoreSleep: true"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" -30 0 0" rotation="0 0 90" radius="1" height="1"
+      depth="60" color="red" physics-collider="ignoreSleep: true"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 30 0 0" rotation="0 0 90" radius="1" height="1"
+      depth="60" color="red" physics-collider="ignoreSleep: true"></a-box>
+    <a-box static-body physics-collider="ignoreSleep: true" position=" 0 0 30" rotation="0 0 90" radius="30" height="60"
+      depth="1" color="red" physics-collider="ignoreSleep: true"></a-box>
+
+
     <!-- Chão -->
-    <a-box id="solo" 
-      position='0 0 0' 
-      static-body physics-collider="ignoreSleep: true"
-      width="200" height="1" depth="200" 
-      static-body material="src: #texture-floor; opacity: 0.8; transparent: true">
-      <a-animation 
-      attribute="scale"
-      dur="99999"
-      from="1 1 1"
-      to="0 0 0"
-      direction="alternate-reverse"
-      easing="ease-out-circ"></a-animation>
-    </a-box>   
+    <a-box id="solo" position='0 0 0' static-body physics-collider="ignoreSleep: true" width="200" height="1"
+      depth="200" static-body material="src: #texture-floor; opacity: 0.8; transparent: true">
+      <a-animation attribute="scale" dur="99999" from="1 1 1" to="0 0 0" direction="alternate-reverse"
+        easing="ease-out-circ"></a-animation>
+    </a-box>
 
     <!-- Sub-solo -->
     <!-- <a-box id="sub-solo" 
@@ -178,19 +175,13 @@
       width="200" height="5" depth="200" 
       static-body material="src: #texture-subsolo; opacity: 1.0; transparent: true">      
     </a-box>  -->
- 
+
 
     <!-- Água/Lava -->
-    <a-box id="fluido" 
-     width="200" height="2" depth="200" 
-      static-body material="src: #texture-fluido; opacity: 0.9; transparent: true">
-      <a-animation 
-        attribute="position"
-        dur="99999"
-        from="0 -1 0"d
-        to="0 0.1 0"
-        repeat="indefinite">
-    </a-box> 
+    <a-box id="fluido" width="200" height="2" depth="200" static-body
+      material="src: #texture-fluido; opacity: 0.9; transparent: true">
+      <a-animation attribute="position" dur="99999" from="0 -1 0" d to="0 0.1 0" repeat="indefinite">
+    </a-box>
 
     <!-- Placa superior -->
     <!-- <a-box id="placa-superior" 
@@ -203,12 +194,12 @@
         to="0 1 0"
         repeat="indefinite">
     </a-animation>
-    </a-box> -->              
-  
+    </a-box> -->
+
 
     <!-- ANIMAÇÕES -->
 
-   <!--  <a-animation 
+    <!--  <a-animation 
     attribute="rotation"
     dur="50000"
     to="0 360 0"
@@ -222,7 +213,7 @@
     to="red"
     repeat="indefinite"> -->
 
-      <!-- <a-animation 
+    <!-- <a-animation 
       attribute="scale"
       dur="50000"
       from="1 1 1"
@@ -231,29 +222,46 @@
       easing="ease-in-out-circ"
       repeat="indefinite"> -->
 
-    </a-scene>
+      <!-- AFRAME.registerComponent('trampolim', {
 
+      init: function () {
+        this.el.addEventListener("collisions", (e) => {
+          colisao = colisao + 1;
+          console.log("colisao : " + colisao)
+          alert("Você perdeu")
+          location.reload()
+        })
+      }
+    }); -->
 
+  </a-scene>
+  <script>
 
+    AFRAME.registerComponent('jogador', {
+      tick: function () {
+        const position = this.el.getAttribute('position');
 
+        if (position.x > 30) {
 
-    <script>
-        
-        AFRAME.registerComponent('trampolim', {
-			
-			init: function () {
-				this.el.addEventListener("collisions", (e) => {
-					colisao = colisao+1;
-					console.log("colisao : "+ colisao)
-					alert("Você perdeu")
-					location.reload()
-				})
-			}
+          await sleep(2000);
+          location.reload();
+        } if (position.x < -30) {
 
+          await sleep(2000);
+          location.reload();
+        } if (position.z > 30) {
 
-		});
+          await sleep(2000);
+          location.reload();
+        } if (position.z > -30) {
 
-    </script>
-    
-  </body>
+          await sleep(2000);
+          location.reload();
+        }
+        },
+      });
+  </script>
+
+</body>
+
 </html>

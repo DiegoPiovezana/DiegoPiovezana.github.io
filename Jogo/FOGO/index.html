@@ -25,6 +25,17 @@
 
   <body>
     
+    <script>
+     /*  AFRAME.registerComponent('rotation-reader', {
+      tick: function () {
+   
+     console.log();
+    }
+     }); */
+    
+    </script>
+
+
     <!-- 
       CENÁRIOS:
 
@@ -177,7 +188,7 @@
       <a-animation 
         attribute="position"
         dur="555555"
-        from="0 -3 0"d
+        from="0 -3 0"
         to="0 10 0"
         repeat="indefinite">
     </a-box> 
@@ -224,24 +235,17 @@
     </a-scene>
 
 
-
-
-
     <script>
         
-        AFRAME.registerComponent('trampolim', {
-			
-			init: function () {
-				this.el.addEventListener("collisions", (e) => {
-					colisao = colisao+1;
-					console.log("colisao : "+ colisao)
-					alert("Você perdeu")
-					location.reload()
-				})
-			}
+        var jogador = document.getElementById("jogador");
+        var fluido = document.getElementById("fluido");
 
+        var posicaoJogador = jogador.getAttribute('position');
+        var posicaoFluido = fluido.getAttribute('position');
 
-		});
+        console.log("Posição"+posicaoJogador);
+        console.log("Posição"+posicaoFluido);
+
 
     </script>
     

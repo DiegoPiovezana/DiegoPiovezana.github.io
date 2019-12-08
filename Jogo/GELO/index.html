@@ -1,7 +1,7 @@
 <html>
 
 <head>
-
+  
   <meta charset="utf-8">
   <title>TOMB OF THE MASK - Winter</title>
   <meta name="description" content="Um jogo inspirado no jogo Tomb of the Mask">
@@ -79,6 +79,8 @@
     var resistenciaGelo; /* Elemento */
     var resistividade; /* Valor da resistencia do gelo */
 
+    var congelamento;
+
 
 
   </script>
@@ -138,11 +140,8 @@
     <!-- Céu -->
     <!-- <a-sky id="sky" color="#0000ff"></a-sky> -->
 
-
-    <!-- ########################### CÂMERAS TESTADAS ######################################## -->
-
     <!-- Câmera / Player -->
-    <a-entity id="jogador" camera="userHeight: 1.8" universal-controls kinematic-body position="-20 0 25">
+    <a-entity id="jogador" camera="userHeight: 1.8" universal-controls kinematic-body position="-15 0 15">
 
       <a-text id=scoreCamera value="Teste Camera" width="1" geometry="primitive:plane; height: 0.1; width:0.1"
         position="-0.7 0.35 -0.5" visible="false"></a-text>
@@ -152,49 +151,14 @@
 
       <a-text id=resistenciaGelo value="Resistencia do gelo = 100%" width="0.4" position="-0.75 0.28 -0.5" visible="false"></a-text>
 
+      <a-text id=congelamento value="Congelando..." width="0.4" position="-0.75 0.25 -0.5" visible="false"></a-text>
+
+
     </a-entity>
 
-    <!-- Origem / Seed -->
+    <!-- Origens / Seed -->
     <!-- Posição longe da saída: 24 0 0  -->
     <!-- Saída: -30 0 20-->
-
-
-
-
-    <!-- Câmera (Objetos ficam abstratos = jogador cai) -->
-    <!-- <a-entity id="jogador"
-          camera="userHeight: 1.8"
-          universal-controls
-          kinematic-body
-          position="-20 10.8 20"
-          physics-collider="ignoreSleep: true">
-      </a-entity> -->
-
-    <!-- Câmera (câmera flutua)-->
-    <!-- <a-box src="https://images-na.ssl-images-amazon.com/images/I/21ZzpgClpiL.png" 
-      height="0.6" width="0.6" depth="0.1" 
-      bird id="bird" position="-20 10.8 20" rotation="-1 0 0" 
-      static-body physics-collider="ignoreSleep: true">
-        <a-camera 
-        id="camera"
-        
-        look-controls-enabled="false">
-        
-        </a-camera>
-      </a-box> -->
-
-
-    <!-- Câmera MP -->
-    <!-- <a-entity 
-      camera look-controls wasd-controls 
-      acceleration="500" 
-      position="0 2 1" static-body
-      physics-collider="ignoreSleep: true" 
-      geometry="primitive: box; width: 1.1; height: 2.5; depth: 1.1"
-      avatar>
-      </a-entity> -->
-
-    <!-- ############################################################################## -->
 
 
     <!-- Caixa de vista panorâmica para se apoiar COM COLISÃO / Caixa "trampolim" -->
@@ -290,8 +254,10 @@
     /* quebraGelo = document.getElementById("quebraGelo"); */
     /* musicaVitoria = document.getElementById("musica_vitoria"); */
     resistenciaGelo = document.getElementById("resistenciaGelo");
+    congelamento = document.getElementById("congelamento");
 
     window.onloadend = window.alert("Saia do labirinto antes que o gelo quebre e você morra congelado(a)!");
+    window.onloadend = window.alert("Clique na tela e utilize o teclado para andar pelo labirinto.\n Dica: Siga a música!");
     window.onloadend = window.alert("BOM JOGO!");
 
     function iniciar() {
@@ -324,14 +290,26 @@
 
       alturaAgua = agua.getAttribute("position").y
      
-      resistividade= 170 - tempo; /* Considerando 170 como o segundo de rompimento do gelo */
+      resistividade = 170 - tempo; /* Considerando 170 como o segundo de rompimento do gelo */
+     
+      if(resistividade<0){   /* Se gelo quebrou */       
+        resistividade=0;
+        resistenciaGelo.setAttribute("visible", "false");
 
-      if(resistividade<0) resistividade=0;
+        var congelado =  (Math.round( (0.88-(alturaAgua*10)*0.001048)*-100))*-1; /* Altura máxima da água = 0.17 */
+
+        /* congelamento.setAttribute("value", "Congelamento = "+congelado+"%"); */ /* Altera resistividade do gelo */
+        congelamento.setAttribute("visible", "true");
+        console.log("Congelamento = "+congelado+"%");
+
+
+      }
 
       console.log("Altura da água: " + alturaAgua);
-      console.log("Resistência do gelo: "+resistividade);
+      /* console.log("Resistência do gelo: "+resistividade); */
+     
 
-      if (alturaAgua > -0.88 && alturaAgua < -0.87) {
+      if (alturaAgua > -0.87 && alturaAgua < -0.86) {
         /* quebraGelo.setAttribute("autoplay","true"); */
 
         var quebraGelo = new Audio('congelar.mp3'); /* Quebrou */
@@ -348,11 +326,10 @@
       }
 
       position = "-0.5 0 -0.5"
-      if (derrota) { /* Se jogador morreu: impede de andar*/
 
-        jogador.setAttribute("position", xMorte + " " + posicaoJogador.y + " " + zMorte);
+      /* Se jogador morreu: impede de andar*/
+      if (derrota) jogador.setAttribute("position", xMorte + " " + posicaoJogador.y + " " + zMorte);
 
-      }
 
       if (fim == false) {
 
@@ -371,6 +348,9 @@
         scoreCamera.setAttribute("visible", "true");
 
         resistividade = Math.round(resistividade/1.7);
+
+        console.log("Resistência do gelo: "+resistividade);
+        console.log(" "); /* Espaço para organizar print */
 
         resistenciaGelo.setAttribute("value", "Resistencia do gelo = "+resistividade+"%"); /* Altera resistividade do gelo */
         resistenciaGelo.setAttribute("visible", "true");

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -13,9 +12,13 @@
   <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
 
   <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.2.0/dist/aframe-extras.min.js"></script>
+
   <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.2.0/dist/aframe-physics-system.min.js"></script>
-  <script
+
+
+  <!-- <script
     src="https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js"></script>
+   -->
   <script src="https://unpkg.com/aframe-maze-component@0.1.20/dist/aframe-maze-component.min.js"></script>
 
   <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
@@ -49,6 +52,29 @@
       threetowers #### Gelo
      -->
 
+  <script>
+
+    var pontuacao; /* Valor do score */
+    var score; /* Elemento Score */
+    var scoreCamera; /* Mostrador na câmera */
+    var tempo;
+    var dentro; /* Dentro ou fora do labirinto */
+    var posicaoJogador;
+    var fim; /* Fim do jogo = tempo esgotado */
+    var derrota;
+
+    var perdeu;
+
+    var valorPontos;
+    var jogador;
+    var tempoInicio;
+    var tempoAtual;
+
+  </script>
+
+
+
+
   <a-scene environment="preset: threetowers" physics="debug: false">
 
     <!-- SOM -->
@@ -61,10 +87,26 @@
     <!-- Norte -->
 
     <a-sound src="congelar.mp3" autoplay="true" position="0 0 0"></a-sound>
-    <a-sound src="intro.mp3" autoplay="true" position="-30 0 0" loop="true"></a-sound> <!-- Única saída Sul -->
+    <a-sound id=musica src="intro.mp3" autoplay="true" position="-30 0 30" loop="true" on=true></a-sound>
+    <!-- Som na única saída Sul -->
+
+    <!-- Música Vitória -->
+    <a-sound src="congelar.mp3" autoplay="false" position="0 0 0" on=false></a-sound>
 
     <!-- TIMER - Não funciona-->
     <!-- <div class="circle-timer"></div> -->
+
+
+    <a-text value="Score: 0" width="100" id="score" rotation="0 0 0" color="white" position="-5 40 0" rotation="0 0 0"
+      visible="true"></a-text>
+
+    <a-text value="VITORIA!" width="500" id="vitoria" rotation="0 0 0" color="blue" position="-15 25 0"
+      rotation="-10 45 -20" visible="false"></a-text>
+
+    <a-text value="Você Perdeu!" width="1.3" id="perdeu" rotation="0 -90 0" color="black" position="-13.9 5 -6.17"
+      rotation="0 0 0" visible="false"></a-text>
+
+    <!-- <a-text value="Teste 1" geometry="primitive:plane"></a-text> -->
 
 
     <a-assets>
@@ -96,11 +138,17 @@
       </a-box> -->
 
 
-
+    <!-- ########################### CÂMERAS TESTADAS ######################################## -->
 
     <!-- Câmera (com apenas muro concreto)-->
     <a-entity id="jogador" camera="userHeight: 1.8" universal-controls kinematic-body position="24 0 0">
+      <a-text id=scoreCamera value="Teste Camera" width="1" geometry="primitive:plane; height: 0.1; width:0.1 "
+        position="-0.7 0.35 -0.5" visible="false"></a-text>
     </a-entity>
+
+    <!-- Posição longe da saída: 24 0 0  -->
+    <!-- Saída: -30 0 20-->
+
 
 
     <!-- Câmera (Objetos ficam abstratos = jogador cai) -->
@@ -136,6 +184,8 @@
       avatar>
       </a-entity> -->
 
+    <!-- ############################################################################## -->
+
 
     <!-- Caixa de vista panorâmica para se apoiar / Caixa "trampolim" -->
     <!-- <a-box static-body physics-collider="ignoreSleep: true" id= "trampolim"
@@ -146,27 +196,14 @@
       </a-box> -->
 
     <!-- Labirinto  -->
-    <a-entity id="maze" maze='size: 15 15; wall: #wall-one; cap: #end-cap; open: S 0;' position='0 0.1 0'
-      rotation='0 0 0'>
+    <a-entity id="maze" maze='size: 15 15; wall: #wall-one; cap: #end-cap; open: S 0; opacity: 0.2; transparent: true"'
+      position='0 0.1 0' rotation='0 0 0'>
     </a-entity>
-
-    <!-- Compara a saida do personagem --Saidas (linhas ao redor do labirinto) 
-    <a-box static-body physics-collider="ignoreSleep: true" position=" 0 0 -40" rotation="0 0 90" radius="30"
-      height="60" depth="1" color="red" physics-collider="ignoreSleep: true"></a-box>
-    <a-box static-body physics-collider="ignoreSleep: true" position=" -40 0 0" rotation="0 0 90" radius="1" height="1"
-      depth="60" color="red" physics-collider="ignoreSleep: true"></a-box>
-    <a-box static-body physics-collider="ignoreSleep: true" position=" 40 0 0" rotation="0 0 90" radius="1" height="1"
-      depth="60" color="red" physics-collider="ignoreSleep: true"></a-box>
-    <a-box static-body physics-collider="ignoreSleep: true" position=" 0 0 40" rotation="0 0 90" radius="30" height="60"
-      depth="1" color="red" physics-collider="ignoreSleep: true"></a-box> 
-    
-    Depreciado    
-    -->
 
 
     <!-- Chão -->
     <a-box id="solo" position='0 0 0' static-body physics-collider="ignoreSleep: true" width="400" height="1"
-      depth="400" static-body material="src: #texture-floor; opacity: 0.8; transparent: true">
+      depth="400" static-body material="src: #texture-floor; opacity: 0.8; transparent: true" visible=true>
       <a-animation attribute="scale" dur="999999" from="1 0.5 1" to="0 0 0" direction="alternate-reverse"
         easing="ease-out-circ"></a-animation>
     </a-box>
@@ -181,12 +218,10 @@
 
     <!-- Água/Lava -->
     <a-box id="fluido" width="300" height="2" depth="300" static-body
-      material="src: #texture-fluido; opacity: 0.9; transparent: true">
-      <a-animation attribute="position" dur="9999999" from="0 -1 0" d to="0 0.1 0" repeat="indefinite">
+      material="src: #texture-fluido; opacity: 0.9; transparent: true" visible=true>
+      <a-animation attribute="position" dur="999999" from="0 -1 0" d to="0 0.1 0">
     </a-box>
 
-    <a-text id="texto" value="VITORIA" position="0 0 0" color="black" width="15" radius="15" height="15"
-      visible="false"></a-text>
 
     <!-- Placa superior -->
     <!-- <a-box id="placa-superior" 
@@ -202,7 +237,7 @@
     </a-box> -->
 
 
-    <!-- ANIMAÇÕES -->
+    <!-- ## ANIMAÇÕES ## -->
 
     <!--  <a-animation 
     attribute="rotation"
@@ -219,72 +254,133 @@
     repeat="indefinite"> -->
 
     <!-- <a-animation 
-      attribute="scale"
-      dur="50000"
-      from="1 1 1"
-      to="3 3 3"
-      direction="alternate-reverse"
-      easing="ease-in-out-circ"
-      repeat="indefinite"> -->
+    attribute="scale"
+    dur="50000"
+    from="1 1 1"
+    to="3 3 3"
+    direction="alternate-reverse"
+    easing="ease-in-out-circ"
+    repeat="indefinite"> -->
 
-    <!-- AFRAME.registerComponent('trampolim', {
+    <!-- Fim dos tipos de animações -->
 
-      init: function () {
-        this.el.addEventListener("collisions", (e) => {
-          colisao = colisao + 1;
-          console.log("colisao : " + colisao)
-          alert("Você perdeu")
-          location.reload()
-        })
-      }
-    }); -->
-    <script>
-      // document.addEventListener('wasd-controls');
-      document.addEventListener('wasd-controls', function (evt) {
-        console.log(document.getElementById('jogador').getAttribute('position'));
-      });
-
-      //PEGANDO O COMPONENTE JOGADOR PARA REALIZAR OPERAÇÕES COM O MESMO
-      AFRAME.registerComponent('jogador', {
-        tick: function () {
-          //PRINTA MENSAGENS SOBRE A POSIÇÃO DO JOGADOR NO EIXO X
-          console.log(this.el.getAttribute('position').x);
-
-
-          //COMPARAR SE A PESSOA JA ESTA FORA DO LABIRINTO PELA DIREITA
-          if (this.el.getAttribute('position').x > 30) {
-
-            //MOSTRAR PLACAR AQUI
-
-          }
-          //COMPARAR SE A PESSOA JA ESTA FORA DO LABIRINTO PELA ESQUERDA
-          if (this.el.getAttribute('position').x < -30) {
-
-            //MOSTRAR PLACAR AQUI
-
-          }
-          //COMPARAR SE A PESSOA JA ESTA FORA DO LABIRINTO PELO  NORTE
-          if (this.el.getAttribute('position').z > 30) {
-
-            //MOSTRAR PLACAR AQUI
-
-          }
-          //COMPARAR SE A PESSOA JA ESTA FORA DO LABIRINTO PELO SUL
-          if (this.el.getAttribute('position').z > -30) {
-
-
-            //EXEMPLO DE COMO SERIA UMA CHAMADA DO TEXTO DA PONTUAÇÃO
-
-            //document.getElementById('texto').setAttribute('visible', true);
-            //document.getElementById('texto').setAttribute('position', { x: 0, y: position.y + 5, z: position.z + -40 });
-            //await sleep(2000);
-            //location.reload();
-          }
-        },
-      });
-
-    </script>
   </a-scene>
+
+
+  <script>
+
+
+    jogador = document.getElementById("jogador");
+    score = document.getElementById("score");
+    scoreCamera = document.getElementById("scoreCamera");
+    perdeu = document.getElementById("perdeu");
+    vitoria = document.getElementById("vitoria");
+    gelo = document.getElementById("solo");
+    agua = document.getElementById("fluido");
+    musica = document.getElementById("musica");
+
+    function iniciar() {
+
+      console.log("JOGO INICIADO")
+
+      tempoInicio = new Date();
+      dentro = true;
+      fim = false;
+      derrota = false;
+
+      console.log("ScoreCamera:" + pontuacao);
+
+      valorPontos = 0;
+
+      score.setAttribute("value", "Score: " + pontuacao);
+
+
+    }
+    window.onloadend = window.alert("Saia do labirinto antes que o gelo quebre e você morra congelado(a)!");
+
+    function verificaJogador() {
+
+      console.log("Tecla Pressionada!");
+
+      if (fim == false) {
+
+        tempo = comparaTempo();
+        pontuacao = 1000 - tempo;
+
+        console.log("Score: " + pontuacao);
+
+        scoreCamera.setAttribute("visible", "true");
+
+        /* Atualiza Score do final do labirinto */
+        score.setAttribute("value", "Score: " + pontuacao);
+        scoreCamera.setAttribute("value", "Score: " + pontuacao);
+
+        jogador = document.getElementById("jogador");
+        posicaoJogador = jogador.getAttribute("position");
+
+        console.log("X = " + posicaoJogador.x);
+        console.log("Y = " + posicaoJogador.y);
+        console.log("Z = " + posicaoJogador.z);
+
+        if (posicaoJogador.z > 35 && derrota == false) { /* Se jogador saiu para fora do labirinto na saída SUL */
+          console.log("SAIU!"); /* Ganhou */
+
+          vitoria.setAttribute("visible", "true");
+          gelo.setAttribute("visible", "false");
+          agua.setAttribute("visible", "false");
+
+          dentro = false;
+          fim = true;
+        }
+
+        if (tempo > 100 && dentro) { /* Se tempo esgotou */
+          console.log("CONGELOU!");
+
+          fim = true;
+          perdeu.setAttribute("visible", "true");
+          musica.setAttribute("on","false");
+
+          derrota = true;
+
+        }
+      }
+    }
+
+    function comparaTempo() { /* Retorna os segundos passados */
+
+
+      var horaInicio = tempoInicio.getHours();
+      var minutoInicio = tempoInicio.getMinutes();
+      var segundoInicio = tempoInicio.getSeconds();
+
+      var segundosInicio = horaInicio * 3600 + minutoInicio * 60 + segundoInicio;
+
+      /* console.log("Início: "+segundosInicio); */
+
+
+      var tempoAgora = new Date();
+
+      var horaAgora = tempoAgora.getHours();
+      var minutoAgora = tempoAgora.getMinutes();
+      var segundoAgora = tempoAgora.getSeconds();
+
+      var segundosAgora = horaAgora * 3600 + minutoAgora * 60 + segundoAgora;
+
+      /* console.log("Agora: "+segundosAgora); */
+
+      tempo = segundosAgora - segundosInicio;
+
+      return tempo;
+
+
+    }
+
+    iniciar();
+    document.addEventListener('keydown', verificaJogador);
+
+
+  </script>
+
 </body>
 
 </html>
